@@ -1,0 +1,28 @@
+--- origsrc/lmarbles-1.0.8/Makefile.am	2009-10-26 15:01:08.000000000 -0500
++++ src/lmarbles-1.0.8/Makefile.am	2010-11-04 00:54:34.217881800 -0500
+@@ -17,7 +17,7 @@ WIN32_SYS_DLL = msvcrt.dll
+ 
+ lmarbles.desktop:
+ 	@sed -e "s+Icon=+Icon=$(datadir)/icons/lmarbles48.gif+" \
+-	< lmarbles.desktop.in > lmarbles.desktop
++	< $(srcdir)/lmarbles.desktop.in > lmarbles.desktop
+ 
+ win32text: $(WIN32_TEXT)
+ 	@echo Converting text files for win32 installer
+--- origsrc/lmarbles-1.0.8/src/Makefile.am	2004-06-09 07:27:18.000000000 -0500
++++ src/lmarbles-1.0.8/src/Makefile.am	2010-11-04 00:55:38.547460100 -0500
+@@ -84,12 +84,12 @@ install-data-local:
+ 	$(mkinstalldirs) $(DESTDIR)$(inst_dir)/levels
+ #data files
+ 	for file in $(DATA_FILES); do\
+-	   $(INSTALL_DATA) $$file $(DESTDIR)$(inst_dir)/$$file;\
++	   $(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(inst_dir)/$$file;\
+ 	done
+ #profiles
+ 	$(mkinstalldirs) $(DESTDIR)$(prf_dir)
+ 	if ! test -f $(DESTDIR)$(prf_dir)/lmarbles.prfs; then \
+-	$(INSTALL_DATA) -m 666 empty.prfs $(DESTDIR)$(prf_dir)/lmarbles.prfs; \
++	$(INSTALL_DATA) -m 666 $(srcdir)/empty.prfs $(DESTDIR)$(prf_dir)/lmarbles.prfs; \
+ 	fi;
+ 
+ uninstall-local:
